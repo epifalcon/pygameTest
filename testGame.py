@@ -1,4 +1,4 @@
-#!/usr/local/bin/python
+#!/usr/bin/python
 
 import pygame
 
@@ -27,11 +27,13 @@ class TestGame():
         self.yRate = 0
         self.RATE = 1
 
+        self.backgroundPosition = [0,0]
+        self.backgroundImage = pygame.image.load("levels/level.png").convert()
+
     def run(self):
         print "Running"
         while not self.done:
             text = "NOTHING"
-            self.screen.fill(self.WHITE)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
@@ -51,9 +53,11 @@ class TestGame():
                         self.xRate = -self.RATE
                 if event.type == pygame.KEYUP:
                     if event.key == pygame.K_UP:
-                        self.yRate = 0
+                        if self.yRate < 0:
+                            self.yRate = 0
                     if event.key == pygame.K_DOWN:
-                        self.yRate = 0
+                        if self.yRate > 0:
+                            self.yRate = 0
                     if event.key == pygame.K_RIGHT:
                         if self.xRate > 0:
                             self.xRate = 0
@@ -62,10 +66,11 @@ class TestGame():
                             self.xRate = 0
 
             text = self.font.render(text, True, self.BLACK) # (Text, aliased, color)
-            self.screen.blit(text, [10,10])
+            #self.screen.blit(text, [10,10])
             self.x = self.x + self.xRate
             self.y = self.y + self.yRate
-            pygame.draw.rect(self.screen, self.BLUE, [self.x,self.y,20,20])
+            #pygame.draw.rect(self.screen, self.BLUE, [self.x,self.y,20,20])
+            self.screen.blit(self.backgroundImage, [self.x, self.y])
             pygame.display.update()
             self.clock.tick(60)
 
