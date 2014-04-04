@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/local/bin/python
 
 import pygame
 
@@ -14,7 +14,7 @@ class TestGame():
         self.clock = pygame.time.Clock()
 
         pygame.init()
-        size = (700, 500)
+        size = (800, 500)
         self.screen = pygame.display.set_mode(size)
         pygame.display.set_caption("testGame")
         self.screen.fill(self.WHITE)

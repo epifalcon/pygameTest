@@ -17,16 +17,17 @@ class Player(pygame.sprite.Sprite):
         self.touchingGround = False
         self.animateCounter = 0
 
-        self.skin = pygame.image.load('PlayerImages/'+skin).convert()
+        self.skin = pygame.image.load('PlayerImages/'+skin+'.png').convert()
         self.colorkey = self.skin.get_at((1,1))
         self.skin.set_colorkey(self.colorkey)
+        self.skinStanding = self.skin.subsurface((220,424),(340,565))
+        self.skinWalking1 = self.skin.subsurface((345,424),(423,565))
+        self.skinWalking2 = self.skin.subsurface((428,424),(522,565))
+        self.skinWalking3 = self.skin.subsurface((524,424),(659,565))
+        self.skinWalking4 = self.skin.subsurface((686,424),(775,565))
+        self.skinWalking5 = self.skin.subsurface((775,424),(870,565))
+        self.skinWalking6 = self.skin.subsurface((889,424),(1024,565))
         '''
-        self.skinStanding = self.skin.subsurface((x,y),(x,y))
-        self.skinWalking1 = self.skin.subsurface((x,y),(x,y))
-        self.skinWalking2 = self.skin.subsurface((x,y),(x,y))
-        self.skinWalking3 = self.skin.subsurface((x,y),(x,y))
-        self.skinWalking4 = self.skin.subsurface((x,y),(x,y))
-        self.skinWalking5 = self.skin.subsurface((x,y),(x,y))
         self.skinJumping1 = self.skin.subsurface((x,y),(x,y))
         self.skinJumping2 = self.skin.subsurface((x,y),(x,y))
         self.skinShooting1 = self.skin.subsurface((x,y),(x,y))
