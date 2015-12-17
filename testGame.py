@@ -1,4 +1,4 @@
-#!/usr/local/bin/python
+#!/usr/bin/python
 
 import pygame
 
@@ -14,21 +14,24 @@ class TestGame():
         self.clock = pygame.time.Clock()
 
         pygame.init()
-        size = (800, 500)
+        # Developed for 16x9 at 640x360, scale everything from there
+        size = (640, 360)
         self.screen = pygame.display.set_mode(size)
         pygame.display.set_caption("testGame")
-        self.screen.fill(self.WHITE)
+        self.screen.fill(self.BLACK)
 
         self.font = pygame.font.Font(None, 12)
 
         self.x = 50
-        self.y = 50
+        self.y = 250
+        self.backx = -50
+        self.backy = -360
         self.xRate = 0
         self.yRate = 0
-        self.RATE = 1
+        self.RATE = 2
 
         self.backgroundPosition = [0,0]
-        self.backgroundImage = pygame.image.load("levels/level.png").convert()
+        self.backgroundImage = pygame.image.load("levels/LevelTest2.png").convert()
 
     def run(self):
         print "Running"
@@ -65,12 +68,12 @@ class TestGame():
                         if self.xRate < 0:
                             self.xRate = 0
 
-            text = self.font.render(text, True, self.BLACK) # (Text, aliased, color)
-            #self.screen.blit(text, [10,10])
+            self.backx = self.backx - int(self.xRate/2)
+            self.backy = self.backy - int(self.yRate/2)
+            self.screen.blit(self.backgroundImage, [self.backx, self.backy])
             self.x = self.x + self.xRate
             self.y = self.y + self.yRate
-            #pygame.draw.rect(self.screen, self.BLUE, [self.x,self.y,20,20])
-            self.screen.blit(self.backgroundImage, [self.x, self.y])
+            pygame.draw.circle(self.screen, self.WHITE, [self.x, self.y], 5)
             pygame.display.update()
             self.clock.tick(60)
 
