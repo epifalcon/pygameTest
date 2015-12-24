@@ -25,7 +25,7 @@ class TestGame():
         self.font = pygame.font.Font(None, 12)
 
         # Add some music
-        pygame.mixer.music.load('../Downloads/All_The_Pretty_Little_Horses_lyrics.ogg')
+        pygame.mixer.music.load('sounds/All_The_Pretty_Little_Horses_lyrics.ogg')
         pygame.mixer.music.play(-1)
 
         # Assume player is 40x60
